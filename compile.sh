@@ -1,2 +1,2 @@
-nasm -f elf32 enmascarar_c.s -o enmascarar_c.o;
-gcc -m32 -o main enmascarar_c.o enmascarar_c.c;
+nasm -f elf32 enmascarar_asm.s -o enmascarar.o;
+gcc -m32 -o main enmascarar.o enmascarar_c.c;
