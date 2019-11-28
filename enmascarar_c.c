@@ -18,11 +18,11 @@ void enmascarar_c(unsigned char *a, unsigned char *b, unsigned char *mask, int c
 void abrirArchivo(char *nombreArchivo, int cantidad, unsigned char *buffer)
 {
     FILE *fp;
-    fp = fopen(nombreArchivo,"rb"); //r+
+    fp = fopen(nombreArchivo,"rb"); 
     if (fp == NULL){
-        printf("\nError al abrir el archivo");
+        printf("Error al abrir el archivo\n");
     }else{
-    	fread(buffer,cantidad, 1, fp);   	
+    	fread(buffer, cantidad, 1,fp); 
     }
     fclose(fp);
 }
@@ -30,8 +30,8 @@ void abrirArchivo(char *nombreArchivo, int cantidad, unsigned char *buffer)
 void guardarArchivo(char *nombreArchivo, int cantidad, unsigned char *buffer)
 {
     FILE *fp;
-    fp = fopen(nombreArchivo,"wb"); //rb
-    fwrite(buffer,cantidad, 1, fp);
+    fp = fopen(nombreArchivo,"wb"); 
+    fwrite(buffer, 1, cantidad, fp);
     fclose(fp);
 }
 
@@ -54,10 +54,8 @@ int main(int argc, char *argv[])
     
     int cantidadxPixel = 3; //RGB 3 bytes por pixel
     int cant = ancho * alto * cantidadxPixel;
-
-    clock_t inicio_c, fin_c , inicio_asm, fin_asm;
     
-    //Inicializamos los buffers
+    //Reservamos memoria dinámica
     unsigned char *a = malloc(cant);
     unsigned char *a_asm = malloc(cant);
     unsigned char *b = malloc(cant);
@@ -68,23 +66,27 @@ int main(int argc, char *argv[])
     abrirArchivo(imagen1, cant, a_asm);
     abrirArchivo(imagen2, cant, b);
     abrirArchivo(mask, cant, mascara);
-    
-    inicio_c = clock();
+
+      //Tiempo de enmascarar_c
+    clock_t inicio_c = clock();
     enmascarar_c(a, b, mascara, cant);
-    fin_c = clock();
-    guardarArchivo("salida_c.rgb", cant, a);
-    
-    inicio_asm = clock();
-    enmascarar_asm(a_asm, b, mascara, cant);
-    fin_asm = clock();
-    guardarArchivo("salida_asm.rgb", cant, a_asm);
-
+    clock_t fin_c = clock();
     double tiempoFinal_c = (double) (fin_c - inicio_c)/CLOCKS_PER_SEC;
-    double tiempoFinal_asm = (double) (fin_asm - inicio_asm)/CLOCKS_PER_SEC;
     
-    printf("Cantidad:%d , Tiempo en C:%f , Tiempo en Assembler:%f\n",cant, tiempoFinal_c, tiempoFinal_asm);
+    //Tiempo de enmascarar_asm
+    clock_t inicio_asm = clock();
+    enmascarar_asm(a_asm, b, mascara, cant);
+    clock_t fin_asm = clock();
+    double tiempoFinal_asm = (double) (fin_asm - inicio_asm)/CLOCKS_PER_SEC;
 
+    guardarArchivo("salida_c.rgb", cant, a);
+    guardarArchivo("salida_asm.rgb", cant, a_asm);
+    
+    printf("Cantidad:%d  Tiempo en C:%f  Tiempo en Assembler:%f\n",cant, tiempoFinal_c, tiempoFinal_asm);
+
+    //Liberar memoria
     free(a);
+    free(a_asm);
     free(b);
 	free(mascara);
 

@@ -30,23 +30,11 @@ enmascarar_asm:
     mov eax,[ebp+16] ;mascara
     movq mm2,[eax+ecx]
 
-    ;pandn mm2, mm1 
-    ;pand mm0, mm2 ;tomo la imagen cuando pixel es black
-    ;por mm2, mm0
-
-
-    ;pand mm1, mm2 ; mantiene la imagen cuando el pixel es negro
-    ;pand mm0,mm2
-    ;pandn mm0,mm2
-    ;por mm0,mm1
-    ;por mm1, mm2
-    
    
     pand mm1, mm2 ;mantiene la imagen b cuando el pixel es negro 
-    pandn mm2, mm0 ;matiene la imagen a cuando el pixel es distinto de FFFFFF
+    pandn mm2, mm0 ;mantiene la imagen a cuando el pixel es distinto de FFFFFF
     por mm1, mm2
-      
-      
+       
     ;psubsb mm1, mm2
     ;psubsb mm2, mm3
     ;por mm1, mm2
