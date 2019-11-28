@@ -35,13 +35,6 @@ enmascarar_asm:
     pandn mm2, mm0 ;mantiene la imagen a cuando el pixel es distinto de FFFFFF
     por mm1, mm2
        
-    ;psubsb mm1, mm2
-    ;psubsb mm2, mm3
-    ;por mm1, mm2
-    ;pand mm2,mm0
-    ;pandn mm2, mm1
-    ;por mm1,mm2
-    
     ;debe devolver la imagen a - combinada con a y b 
     mov eax,[ebp+8]
     movq [eax+ecx], mm1

@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
     guardarArchivo("salida_c.rgb", cant, a);
     guardarArchivo("salida_asm.rgb", cant, a_asm);
     
-    printf("Cantidad:%d  Tiempo en C:%f  Tiempo en Assembler:%f\n",cant, tiempoFinal_c, tiempoFinal_asm);
+    printf("Cantidad:%d  Tiempo en C:%f  Tiempo en Assembler: %f \n ",cant, tiempoFinal_c, tiempoFinal_asm);
 
     //Liberar memoria
     free(a);
