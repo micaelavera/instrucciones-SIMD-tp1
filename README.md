@@ -1,4 +1,3 @@
-
 ./compile.sh
 ./main "lago.rgb" "arbol.rgb" "mascara.rgb" 900 600
 
