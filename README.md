@@ -6,12 +6,31 @@ Para esto, se implementó dos versiones de la misma operación: en **lenguaje C*
 
 La aplicación debe recibir los siguientes parámetros: _img1.rgb_ _img2.rgb_ _mascara.rgb_ _ancho alto_.
 
-./compile.sh
-./main "lago.rgb" "arbol.rgb" "mascara.rgb" 900 600
+## Instalación
+Clonar este repositorio y acceder a la carpeta en Linux o en Virtual Box:
+```
+git clone https://github.com/micaelavera/instrucciones-SIMD-tp1.git
+cd instrucciones-SIMD-tp1
+```
 
-En la virtual para convertir de rgb a jpg y viceversa:
-gm convert -size 900x600 -depth 8 salida_c.rgb salida_c.jpg
+./compile.sh  
 
+Ejecuta el archivo main y escriba a continuación los nombres, ancho y alto de los archivos correspondientes:
 
-En la consola de windows para convertir jpg a rgb:
-gm convert imagen1.jpg imagen2_a_renombrar.rgb
+```
+$ ./main "lago.rgb" "arbol.rgb" "mascara.rgb" 900 600`
+```
+## Tips
+En Linux o Virtual Box para convertir un archivo rgb a jpg y viceversa, colocar en la terminal:  
+```
+$ gm convert -size 900x600 -depth 8 imagen1.rgb imagen2.jpg`
+```
+
+En la consola de Windows para convertir un archivo jpg a rgb:
+```
+> gm convert imagen1.jpg imagen2.rgb`
+```
+
+## Autora
+Micaela Vera.
+
